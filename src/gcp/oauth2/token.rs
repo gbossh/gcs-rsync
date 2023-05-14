@@ -59,7 +59,7 @@ impl Token {
 }
 
 #[async_trait::async_trait]
-pub trait TokenGenerator {
+pub trait TokenGenerator: Sync + Send {
     async fn get(&self, client: &Client) -> TokenResult<Token>;
 }
 
