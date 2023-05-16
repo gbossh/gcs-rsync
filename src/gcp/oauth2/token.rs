@@ -148,9 +148,11 @@ impl TokenGenerator for GoogleMetadataServerCredentials {
             .json()
             .await
             .map_err(Error::HttpError)?;
-        token
+        let token = token
             .into_result()
-            .map_err(super::Error::unexpected_api_response::<Token>)
+            .map_err(super::Error::unexpected_api_response::<Token>);
+        println!("token: {:?}", token);
+        token
     }
 }
 
