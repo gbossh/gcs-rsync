@@ -65,4 +65,4 @@ impl Error {
     }
 }
 
-type TokenResult<T> = std::result::Result<T, Error>;
+pub type TokenResult<T> = std::result::Result<T, Error>;
