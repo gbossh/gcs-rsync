@@ -137,9 +137,7 @@ impl TokenGenerator for ServiceAccountCredentials {
 impl TokenGenerator for GoogleMetadataServerCredentials {
     async fn get(&self, client: &Client) -> TokenResult<Token> {
 
-        const DEFAULT_TOKEN_GCP_URI: &str = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/routing-sandbox-us-ea1-wg4%40shopify-cloud-routing.iam.gserviceaccount.com/token";
-        // let uri = format!("{DEFAULT_TOKEN_GCP_URI}?scope={}", urlencoding::encode("https://www.googleapis.com/auth/devstorage.read_only"));
-        // println!("uri: {:?}", uri);
+        const DEFAULT_TOKEN_GCP_URI: &str = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token";
 
         let token: DeserializedResponse<Token> = client
             .client
@@ -154,7 +152,7 @@ impl TokenGenerator for GoogleMetadataServerCredentials {
         let token = token
             .into_result()
             .map_err(super::Error::unexpected_api_response::<Token>);
-        println!("token: {:?}", token);
+        println!("gcs_rsync token: {:?}", token);
         token
     }
 }
