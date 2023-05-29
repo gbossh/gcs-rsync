@@ -54,7 +54,7 @@
 //! # Sync and Mirror examples
 //! - [`gcp::sync::RSync`] examples
 //! - [other examples](https://github.com/cboudereau/gcs-rsync/tree/main/examples)
-pub mod gcp;
+mod gcp;
 
 pub use gcp::oauth2;
 pub use gcp::sync;
